@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposition AMOA - Déploiement Solution KYC | CDC BDTMP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0055a4;
+            --secondary-color: #e63946;
+            --accent-color: #00a3da;
+            --light-color: #f1faee;
+            --dark-color: #1d3557;
+            --text-color: #333;
+            --light-text: #666;
+            --border-color: #ddd;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--light-color);
+        }
+        
+        section {
+            background: white;
+            margin: 2.5rem 0;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        h3 {
+            color: var(--dark-color);
+            margin: 1.8rem 0 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3 i {
+            margin-right: 8px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        
+        ul {
+            padding-left: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+        
+        li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, var(--light-color), #e9f5e9);
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+        
+        .highlight::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path d="M0,0 L100,0 L100,100 Z" fill="%230055a4"/></svg>');
+            background-size: cover;
+        }
+        
+        .highlight-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.8rem 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        th::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        tr:hover {
+            background-color: rgba(0, 85, 164, 0.05);
+        }
+        
+        .competence-table {
+            overflow-x: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .contact-info {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--light-color), #e6f2ff);
+            border-radius: 12px;
+            margin-top: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-info::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><path d="M0,0 L100,0 L100,100 Z" fill="%23e63946"/></svg>');
+            background-size: cover;
+        }
+        
+        .contact-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        .contact-info a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, var(--light-color), #e6f2ff);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+        
+        nav a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark-color) transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .interactive-element {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .interactive-element:hover {
+            transform: scale(1.02);
+        }
+        
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 99;
+            transition: var(--transition);
+            font-size: 1.5rem;
+        }
+        
+        .floating-button:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 1.8rem;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 0.8rem;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                margin: 0.5rem;
+            }
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+            transition: width 1s ease-in-out;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        .comparison-chart {
+            margin: 2rem 0;
+            height: 300px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav>
+            <a href="#expression-besoin">Expression de Besoin</a>
+            <a href="#competences">Mes Compétences</a>
+            <a href="#benchmark">Benchmark Outils</a>
+            <a href="#conclusion">Conclusion</a>
+        </nav>
+    </div>
+    
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h1>Proposition d'Accompagnement AMOA – Déploiement Outil KYC</h1>
+            <p>Pour CDC Banque des Territoires et Moyens de Paiement (BDTMP)</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="introduction">
+            <p>En réponse à votre besoin d'assistance à maîtrise d'ouvrage (AMOA) pour le déploiement d'une solution KYC transverse au sein du domaine SI Banque des Territoires et Moyens de Paiement (BDTMP), je vous soumets la proposition suivante, structurée et opérationnelle.</p>
+            <p>Je structure ma proposition en 4 parties, comme demandé, pour une mise en œuvre opérationnelle immédiate.</p>
+        </section>
+        
+        <section id="expression-besoin" class="interactive-element">
+            <h2><span class="section-number">1</span> <i class="fas fa-bullseye"></i> Votre Expression de Besoin</h2>
+            <p>Vous cherchez un AMOA pour cadrer, sélectionner et déployer une solution KYC end-to-end, couvrant onboarding, CDD/EDD, revues périodiques et offboarding, tout en intégrant screening sanctions/PEP et gestion documentaire.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">30-50%</div>
+                    <div class="stat-label">Gain de productivité visé</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value"><10%</div>
+                    <div class="stat-label">Taux d'abandon cible</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">9-24 mois</div>
+                    <div class="stat-label">Durée du projet</div>
+                </div>
+            </div>
+            
+            <h3><i class="fas fa-exclamation-circle"></i> Contexte et enjeux clés :</h3>
+            <ul>
+                <li><strong>Réglementaire :</strong> Respect des obligations LCB-FT (identification clients/bénéficiaires effectifs, vigilance constante/allégée), gel des avoirs et reporting TRACFIN, avec conservation des justificatifs 5 ans minimum. Risques de sanctions ACPR ou remédiations coûteuses en cas de non-conformité.</li>
+                <li><strong>Opérationnel :</strong> SI fragmenté générant backlogs, ressaisies et délais excessifs ; besoin de transversalité pour métiers (banque, financement, investissement) et clients variés (collectivités, entreprises, investisseurs).</li>
+                <li><strong>Stratégique :</strong> Automatisation pour réduire fraudes documentaires, améliorer UX client (taux d'abandon <10% via digitalisation) et productivité (gain 30-50% temps traitement via OCR/API).</li>
+            </ul>
+            
+            <h3><i class="fas fa-tasks"></i> Attentes concrètes :</h3>
+            <ul>
+                <li><strong>Cadrage :</strong> Définition périmètre (fonctionnel : workflows KYC, scoring risque ; technique : API avec CRM/AML ; organisationnel : gouvernance multi-équipes), estimation coûts (TCO 5 ans : 1-3 M€ CAPEX + OPEX licences), planning (9-24 mois total), risques (juridique : non-auditabilité ; réputationnel : scandales ; opérationnel : retards intégration).</li>
+                <li><strong>Marché public :</strong> Rédaction CCTP (exigences fonctionnelles/techniques/réglementaires), grille scoring (pondération 40% fonctionnel, 30% technique, 20% coûts, 10% risques), dépouillement offres.</li>
+                <li><strong>Déploiement :</strong> Pilotage agile (SCRUM/KANBAN), suivi tickets/backlog, ateliers validation, formation (manuels utilisateurs), reporting (KPI : avancement, risques, adoption).</li>
+                <li><strong>Livrables :</strong> Note cadrage, CCTP, benchmark, plan déploiement, tableaux bord, rapport final validation.</li>
+            </ul>
+            
+            <div class="highlight">
+                <div class="highlight-content">
+                    <p>Je couvre ces besoins pour sécuriser un déploiement fluide, aligné sur votre urbanisation SI et RGPD.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="competences" class="interactive-element">
+            <h2><span class="section-number">2</span> <i class="fas fa-user-check"></i> Mes Compétences vs Vos Exigences</h2>
+            <p>Vos exigences (expertise KYC bancaire, pilotage agile, architecture SI, rédaction CCTP, gestion risques/reporting, autonomie) correspondent pleinement à mon profil de Compliance Officer expert AML/KYC (8 ans banque, déclarant TRACFIN).</p>
+            
+            <div class="competence-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Exigence</th>
+                            <th>Ma Compétence/Expérience Concrète</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Expertise KYC/AML bancaire</td>
+                            <td>Due diligences EDD sur PEP/sanctions, onboarding haut risque, maîtrise 4e-6e directives UE et TRACFIN (15 DS/mois rédigées).</td>
+                        </tr>
+                        <tr>
+                            <td>Pilotage projet agile (SCRUM/KANBAN)</td>
+                            <td>Déploiement CRM/AML : backlog 8 500 alertes géré, UAT, réduction 30% temps traitement via workflows automatisés.</td>
+                        </tr>
+                        <tr>
+                            <td>Architecture/Urbanisation SI</td>
+                            <td>Optimisation flux KYC (intégration screening/CRM via API), dialogue avec IT pour référentiels clients/data quality.</td>
+                        </tr>
+                        <tr>
+                            <td>Rédaction CCTP/analyse offres</td>
+                            <td>Production référentiels/procédures AML, benchmarks solutions (WorldCheck/ComplyAdvantage), grilles scoring multicritères.</td>
+                        </tr>
+                        <tr>
+                            <td>Gestion risques/comitologie/reporting</td>
+                            <td>Suivi risques LCB-FT (plans mitigation), animation comités, tableaux bord Power BI (KPI conformité/adoption).</td>
+                        </tr>
+                        <tr>
+                            <td>Autonomie/rigueur/environnement complexe</td>
+                            <td>Travail transverse (métiers/IT/juridique) chez BNP/Delubac, trilingue (FR/EN/AR) pour cas cross-border.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="highlight">
+                <div class="highlight-content">
+                    <p><strong>Valeur ajoutée :</strong> Double expertise conformité-SI pour traduire réglementations en specs techniques ; rigueur TRACFIN pour auditabilité ; autonomie pour livrables rapides (ex. : note cadrage en 2 semaines).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="benchmark" class="interactive-element">
+            <h2><span class="section-number">3</span> <i class="fas fa-chart-bar"></i> Benchmark des Outils KYC (Complet et Chiffré)</h2>
+            <p>Je propose un benchmark structuré sur 6 solutions marché, basé sur couverture KYC (onboarding à monitoring perpétuel), conformité (UE/TRACFIN), intégration et TCO. Chiffres : ordres grandeur projets bancaires moyens (banque 500-2000 clients/jour), affinés via offres réelles. Grille multicritères (scoring /10 : fonctionnel 40%, technique 30%, conformité 20%, coûts 10%).</p>
+            
+            <div class="competence-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Outil</th>
+                            <th>Couverture Fonctionnelle (Scoring/10)</th>
+                            <th>Conformité Réglementaire</th>
+                            <th>Intégration SI (API/Cloud)</th>
+                            <th>Coûts Chiffrés (TCO 5 Ans, k€)</th>
+                            <th>Délais Mise en Œuvre</th>
+                            <th>Avantages/Inconvénients</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Fenergo CLM/KYC</strong> <span class="badge">Recommandé</span></td>
+                            <td>9/10 : End-to-end (onboarding, EDD, revues, docs, scoring, pKYC).</td>
+                            <td>UE 4-6e dir., TRACFIN, sanctions/PEP ; règles pré-packagées 120 pays.</td>
+                            <td>API-first, SaaS ; int. CRM/AML/TM ; urbanisation forte.</td>
+                            <td>Licences : 500-1 000/an ; Intégration : 1 000-2 000 ; Total TCO : 4 000-7 000.</td>
+                            <td>12-24 mois</td>
+                            <td>Av. : Transversalité métiers ; In. : Coût élevé, complexité paramétrage.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pega CLM/KYC</strong> <span class="badge">Recommandé</span></td>
+                            <td>9/10 : Cycle vie client, workflows BPM, règles dynamiques multi-régios.</td>
+                            <td>AML/CTF, FATCA/CRS, MiFID ; automation EDD.</td>
+                            <td>Low-code, orchestration ; int. screening/CRM ; scalable cloud.</td>
+                            <td>Licences : 400-800/an ; Intégration : 800-1 500 ; Total TCO : 3 500-6 000.</td>
+                            <td>9-18 mois</td>
+                            <td>Av. : Flexibilité agile ; In. : Courbe apprentissage IT.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Oracle FS KYC</strong></td>
+                            <td>8/10 : KYC/CDD, vue 360°, graph analytics, monitoring.</td>
+                            <td>UE dir., sanctions/adverse media ; IA pour faux positifs.</td>
+                            <td>Cloud-native, int. suite Oracle (TM/investigation) ; API robustes.</td>
+                            <td>Licences : 600-1 200/an ; Intégration : 1 200-2 500 ; Total TCO : 5 000-8 000.</td>
+                            <td>9-18 mois</td>
+                            <td>Av. : Analytics avancés ; In. : Dépendance écosystème Oracle.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NICE Actimize KYC</strong></td>
+                            <td>8/10 : Onboarding, pKYC, int. TM ; entity-centric.</td>
+                            <td>LCB-FT global, PEP/sanctions ; automation revues.</td>
+                            <td>SaaS/AI ; int. data providers/banques ; faible latence.</td>
+                            <td>Licences : 500-900/an ; Intégration : 900-1 800 ; Total TCO : 4 000-6 500.</td>
+                            <td>9-24 mois</td>
+                            <td>Av. : Réduction faux positifs 40% ; In. : Focus AML > KYC pur.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ComplyAdvantage</strong></td>
+                            <td>7/10 : Screening/monitoring (sanctions/PEP/media) ; KYC light.</td>
+                            <td>UE/TRACFIN temps réel ; risk intel.</td>
+                            <td>API/SaaS ; int. CRM/onboarding ; modulaire.</td>
+                            <td>Licences : 50-200/an (vol.-based) ; Intégration : 50-200 ; Total TCO : 500-1 500.</td>
+                            <td>1-3 mois</td>
+                            <td>Av. : Rapide/économique ; In. : Pas CLM complet, besoin complément.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Onfido (IDV/KYC)</strong></td>
+                            <td>6/10 : Vérif. identité (OCR/biometrie/docs) ; onboarding digital.</td>
+                            <td>KYC initial, fraudes docs ; UE RGPD.</td>
+                            <td>SDK/API ; int. apps mobiles/CRM ; <10s/vérif.</td>
+                            <td>Licences : 0.5-2/vérif. (vol.-based) ; Intégration : 20-100 ; Total TCO : 300-1 000.</td>
+                            <td>1-3 mois</td>
+                            <td>Av. : UX fluide, taux conversion +50% ; In. : Brique IDV only.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="highlight">
+                <div class="highlight-content">
+                    <p><strong>Analyse :</strong> Pour CDC (SI complexe, transversalité), priorisez CLM globale (Fenergo/Pega : scoring >8, TCO 4-7 M€, 12-18 mois) pour end-to-end ; complétez par ComplyAdvantage/Onfido (TCO bas, rapide) en best-of-breed si budget contraint. Gains : productivité +30-50%, conformité auditée. Je produirai rapport chiffré post-offres, avec 2 scénarios (global vs modulaire).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="conclusion" class="conclusion interactive-element">
+            <h2><span class="section-number">4</span> <i class="fas fa-flag-checkered"></i> Conclusion</h2>
+            <p>Cette proposition répond concrètement à votre besoin d'AMOA : cadrage sécurisé, benchmark chiffré, déploiement piloté, pour un outil KYC conforme et efficace. Mon expertise aligne parfaitement vos exigences sur une exécution autonome et rigoureuse.</p>
+            
+            <div class="contact-info">
+                <div class="contact-content">
+                    <p>Si cela vous convient, je suis disponible pour échanger : appel 30 min pour affiner planning/livrables, ou réunion avec vos équipes BDTMP.</p>
+                    <p><strong>Contactez-moi à :</strong> <a href="mailto:im.chekhab@gmail.com"><i class="fas fa-envelope"></i> im.chekhab@gmail.com</a> / <a href="tel:0622828806"><i class="fas fa-phone"></i> 0622828806</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="floating-button" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Animation des barres de progression
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress');
+            progressBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width;
+            });
+            
+            // Animation des sections au défilement
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+        });
+        
+        // Fonction pour remonter en haut de page
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Animation des statistiques
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.innerHTML = value + (element.innerHTML.includes('%') ? '%' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Animation au défilement pour les statistiques
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statValue = entry.target.querySelector('.stat-value');
+                    const valueText = statValue.textContent;
+                    
+                    if (valueText.includes('%')) {
+                        const value = parseInt(valueText);
+                        animateValue(statValue, 0, value, 1500);
+                    }
+                    
+                    statObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statObserver.observe(item);
+        });
+    </script>
+</body>
+</html>
